@@ -1,0 +1,40 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class CCercle {
+private:
+    double x0, y0; // Centre du cercle
+    double R;      // Rayon
+
+public:
+    // Constructeur avec centre et rayon
+    CCercle(double x, double y, double rayon) : x0(x), y0(y), R(rayon) {}
+
+    // Constructeur à partir de deux points (rectangle circonscrit)
+    CCercle(double x1, double y1, double x2, double y2) {
+        x0 = (x1 + x2) / 2;
+        y0 = (y1 + y2) / 2;
+        R = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)) / 2;
+    }
+
+    // Méthode pour vérifier si un point est dans le cercle
+    bool dedans(double x, double y) const {
+        return pow(x - x0, 2) + pow(y - y0, 2) <= pow(R, 2);
+    }
+
+    // Calcul de la circonférence
+    double circonference() const {
+        return 2 * M_PI * R;
+    }
+
+    // Calcul de la surface
+    double surface() const {
+        return M_PI * pow(R, 2);
+    }
+
+    // Affichage des informations du cercle
+    void afficher() const {
+        cout << "Centre: (" << x0 << ", " << y0 << "), Rayon: " << R << endl;
+    }
+};
